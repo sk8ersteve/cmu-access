@@ -98,6 +98,7 @@ function geoFindMe() {
 
     function error() {
         output.innerHTML = "Unable to retrieve your location";
+        alert("error" + error.code + error.message);
     }
 
     output.innerHTML = "<p>Locating…</p>";
@@ -106,7 +107,6 @@ function geoFindMe() {
 }
 
 function check() {
-	alert("checking");
     var lat = getLati();
     var long = getLongi();
     var sum = 0.0;
