@@ -1,1 +1,63 @@
-Hooray!
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>PopCMU</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+        window.onload = function () { getLat(); getLong(); }
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div class="eateryList">
+            <div class="open_eatery" id="Alex Room">
+                <h2 id="Alex Room">Alex's Room</h2>
+                <p id="Alex Room">Stever Floor 2</p>
+                <p id="Alex Room">4 people</p>
+            </div>
+        </div>
+        <div>
+            <p id="alex_room"></p>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Place</th>
+                    <th>Wanna know?</th>
+                    <th>Number of People</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Alex's Room</td>
+                    <td>
+                        <button type="button" onclick="check();">
+                            Click on me!
+                        </button>
+                    </td>
+                    <td id="alex_room_pop"></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td id="joseph_room_pop"></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
