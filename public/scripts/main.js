@@ -46,6 +46,7 @@ function gotPos (position) {
 
 function gotErr (error) {
 	alert("error");
+	alert(error.message);
 }
 
 function getLong() {
