@@ -132,6 +132,3 @@ function check() {
         return false;
     }
 }
-
-check();
-var intervalID = setInterval(function(){check();}, 120000);
