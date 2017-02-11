@@ -134,12 +134,8 @@ function check(path) {
     for (var i = 0; i < 3; i++) {
         sum = sum + Math.abs((lat - path[i + 1][0]) * (path[i][1] - long) - (lat - path[i][0]) * (path[i + 1][1] - long)) / 2;
     }
-<<<<<<< Updated upstream
     sum = sum + Math.abs((lat - path[0][0]) * (path[3][1] - long) - (lat - [3][0]) * (path[0][1] - long));
 
-=======
-    sum = sum + Math.abs((lat - path[0][0])*(path[3][1] - long) - (lat - [3][0])*(path[0][1] - long));
->>>>>>> Stashed changes
     if (sum <= area) {
         //document.getElementById("joseph_room_pop").innerHTML = 1;
         //alert("true");
