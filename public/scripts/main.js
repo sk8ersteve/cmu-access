@@ -187,7 +187,7 @@ function restaurants() {
     for (var i = 0; i < 17; i++) {
         var val = check(restaurant[i]);
         if (val == true && inR[i] == 0) {
-        	inR[i] == 1;
+        	inR[i] = 1;
         	//increment the database
         	alert("success" + i);
         	$.ajax('/api/increment/' + i, {
@@ -199,6 +199,15 @@ function restaurants() {
 
         }
         else if (inR[i]==1) {
+			inR[i] = 0;
+        	alert("success" + i);
+        	$.ajax('/api/decrement/' + i, {
+            	type: 'GET',
+            	complete: function() {
+            	    updateView();
+            	}
+        	});
+
         }
     }
     //alert(1);
