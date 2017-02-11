@@ -98,8 +98,6 @@ function geoFindMe() {
 
     function error() {
         output.innerHTML = "Unable to retrieve your location";
-        alert("error");
-        alert(error.message);
     }
 
     output.innerHTML = "<p>Locating…</p>";
@@ -109,6 +107,7 @@ function geoFindMe() {
 
 function doGPS()
 {
+	alert("ok");
     try{
         //position request
         navigator.geolocation.getCurrentPosition( function (position) { 
@@ -125,7 +124,7 @@ function doGPS()
 
 function check() {
 	doGPS();
-    var lat = getLati();
+    /*var lat = getLati();
     var long = getLongi();
     var sum = 0.0;
     var path = [[40.446022, -79.942693],
@@ -149,5 +148,5 @@ function check() {
         document.getElementById("joseph_room_pop").innerHTML = 0;
         alert("false");
         return false;
-    }
+    }*/
 }
