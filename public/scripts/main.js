@@ -12,12 +12,13 @@ function getLocation() {
 }
 */
 
+var inR = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
 function updateView() {
 	var restaurantNames = ["inoodle", "rothberg", "maggie", "zebra", "exchange", "cafe", "servery", "pavillion", "schatz", "abp", "gallo", "uccafe", "underground",
                         "laprima", "heinz", "tazza", "gingers"];
     $("#userdata").html("");
     $.getJSON('/api', function(data) {
-    	alert(data);
         $.each(data, function(i, f) {
             commentItem = "<tr>\
                     <th scope='row'>" + (i+1) + "</th>\
@@ -122,19 +123,16 @@ function geoFindMe() {
 
 function check(path) {
     var lat = getLati();
-    var long = getLongi();
+    var longi = getLongi();
 
 
-    //var path = [[40.445023, -79.944886],
-    //            [40.444370, -79.939286],
-    //            [40.447856, -79.939565],
-    //            [40.447546, -79.944897]];
+    //var path = [[40.445023, -79.944886],[40.444370, -79.939286],[40.447856, -79.939565],[40.447546, -79.944897]];
     var maxValid = false;
     var minValid = false;
 
     for (var i = 0; i < 4; i++) {
         if (path[i][0] <= lat) {
-            minvalid = true;
+            minValid = true;
         }
         if (path[i][0] > lat) {
             maxValid = true;
@@ -147,10 +145,10 @@ function check(path) {
     minValid = false;
 
     for (var i = 0; i < 4; i++) {
-        if (path[i][1] <= long) {
-            minvalid = true;
+        if (path[i][1] <= longi) {
+            minValid = true;
         }
-        if (path[i][1] > long) {
+        if (path[i][1] > longi) {
             maxValid = true;
         }
     }
@@ -172,7 +170,7 @@ function restaurants() {
     var schatz = [[40.443247, -79.942610], [40.443013, -79.942695], [40.442987, -79.942494], [40.443179, -79.942419]];
     var abp = [[40.444112, -79.942097], [40.444154, -79.942270], [40.443932, -79.942352], [40.443902, -79.942165]];
     var gallo = [[40.443048, -79.941964], [40.443075, -79.942169], [40.443207, -79.942115], [40.443174, -79.941922]];
-    var uccafe = [[40.443207, -79.942115], [40.443174, -79.941922], [40.443278, -79.941797], [40.443329, -79.942002]];
+    var uccafe = [[40.445023, -79.944886],[40.444370, -79.939286],[40.447856, -79.939565],[40.447546, -79.944897]];
     var underground = [[40.445373, -79.943264], [40.445432, -79.943458], [40.445241, -79.943573], [40.445191, -79.943425]];
     var laprima = [[40.442542, -79.945850], [40.442678, -79.945805], [40.442706, -79.945954], [40.442596, -79.945993]];
     var heinz = [[40.444273, -79.945369], [40.444111, -79.945443], [40.444111, -79.945641], [40.444242, -79.945756]];
@@ -185,16 +183,22 @@ function restaurants() {
     var restaurant = [inoodle, rothberg, maggie, zebra, exchange, cafe, servery, pavillion, schatz, abp, gallo, uccafe, underground,
                         laprima, heinz, tazza, gingers];
 
-    //alert(restaurant[0]);
 
     for (var i = 0; i < 17; i++) {
         var val = check(restaurant[i]);
-        if (val == true) {
-            return i;
+        if (val == true && inR[i] == 0) {
+        	inR[i] == 1;
+        	//increment the database
+        	alert("success" + i);
+        	$.ajax('/api/increment/' + i, {
+            	type: 'GET',
+            	complete: function() {
+            	    updateView();
+            	}
+        	});
+
         }
-        else {
-            var a = i * 10;
-            document.getElementById(a.toString()).innerHTML = 0;
+        else if (inR[i]==1) {
         }
     }
     //alert(1);
