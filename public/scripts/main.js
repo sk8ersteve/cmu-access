@@ -11,7 +11,32 @@ function getLocation() {
     }
 }
 */
-    function getLat() {
+
+function updateView() {
+	var restaurantNames = ["inoodle", "rothberg", "maggie", "zebra", "exchange", "cafe", "servery", "pavillion", "schatz", "abp", "gallo", "uccafe", "underground",
+                        "laprima", "heinz", "tazza", "gingers"];
+    $("#userdata").html("");
+    $.getJSON('/api', function(data) {
+    	alert(data);
+        $.each(data, function(i, f) {
+            commentItem = "<tr>\
+                    <th scope='row'>" + (i+1) + "</th>\
+                    <td>" + restaurantNames[i] + "</td>\
+                    <td>" + f.occupancy + " people</td>\
+                </tr>";
+            $(commentItem).appendTo("#userdata");
+        });
+
+    })
+    .fail(function() { 
+        commentItem = "<li>No comments yet.</li>"; 
+        $(commentItem).appendTo("#userdata");
+    });
+
+}
+
+
+function getLat() {
     var output = document.getElementById("alex_room");
 
     if (!navigator.geolocation) {
@@ -146,6 +171,7 @@ function restaurants() {
     var tazza = [[40.443396, -79.944354], [40.443263, -79.944396], [40.443327, -79.944787], [40.443474, -79.944715]];
     var gingers = [[40.441148, -79.944440], [40.441208, -79.944410], [40.441222, -79.944495], [40.441169, -79.944510]];
     
+    //uc cafe coords [40.443207, -79.942115], [40.443174, -79.941922], [40.443278, -79.941797], [40.443329, -79.942002]
     //alert("yes");
 
     var restaurant = [inoodle, rothberg, maggie, zebra, exchange, cafe, servery, pavillion, schatz, abp, gallo, uccafe, underground,
