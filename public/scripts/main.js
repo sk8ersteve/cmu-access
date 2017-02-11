@@ -18,8 +18,16 @@ function getLocation() {
         output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
         return;
     }
+    
+    var options = { enableHighAccuracy: true, maximumAge: 100, timeout: 60000 };
+	if( navigator.geolocation) {
+   		var watchID = navigator.geolocation.watchPosition( gotPos, gotErr, options );
+   		var timeout = setTimeout( function() { navigator.geolocation.clearWatch( watchID ); }, 5000 );
+	} else {
+   		gotErr();
+	}
 
-    function success(position) {
+    /*function success(position) {
         var latitude = position.coords.latitude;
 
         output.innerHTML = latitude;
@@ -29,7 +37,15 @@ function getLocation() {
         output.innerHTML = "Unable to retrieve your location";
     }
 
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);*/
+}
+
+function gotPos (position) {
+	alert(position.coords.latitude);
+}
+
+function gotErr (error) {
+	alert("error");
 }
 
 function getLong() {
