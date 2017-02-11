@@ -106,6 +106,7 @@ function geoFindMe() {
 }
 
 function check() {
+	alert("checking");
     var lat = getLati();
     var long = getLongi();
     var sum = 0.0;
