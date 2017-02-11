@@ -99,7 +99,7 @@ function geoFindMe() {
     function error() {
         output.innerHTML = "Unable to retrieve your location";
         alert("error");
-        alert(error.code + error.message);
+        alert(error.message);
     }
 
     output.innerHTML = "<p>Locating…</p>";
@@ -107,7 +107,24 @@ function geoFindMe() {
     navigator.geolocation.getCurrentPosition(success, error);
 }
 
+function doGPS()
+{
+    try{
+        //position request
+        navigator.geolocation.getCurrentPosition( function (position) { 
+        alert(position.coords.latitude);
+        alert(position.coords.longitude);
+        });
+    }
+    catch(evt)
+    {
+        alert(evt.message);
+    }
+
+}
+
 function check() {
+	doGPS();
     var lat = getLati();
     var long = getLongi();
     var sum = 0.0;
@@ -134,6 +151,3 @@ function check() {
         return false;
     }
 }
-
-check();
-var intervalID = setInterval(function(){check();}, 120000);
