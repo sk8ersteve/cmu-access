@@ -11,9 +11,21 @@
     <script>
         window.onload = function () { getLat(); getLong(); }
     </script>
+    <style>
+    	body {
+    		text-align: center;
+    		color:black;
+    		background-image:url("CMU.jpg");
+    		style="background-color:rgba(0, 0, 0, 0.5)";
+    	}
+    	#content {
+    		style="opacity:1.0;
+    	}
+  </style>
 </head>
 <body>
-    <div id="content">
+    <div id="content" style="background-color:rgba(255, 255, 255, 0.5)">
+    
         <div class="eateryList">
             <div class="open_eatery" id="Alex Room">
                 <h2 id="Alex Room">Current Coordinates:</h2>
@@ -31,9 +43,11 @@
                 </tr>
             </thead>
             <tbody>
+            	
                 <tr>
                     <th scope="row">1</th>
                     <td>Alex's Room</td>
+                    
                     <td>
                         <button type="button" onclick="restaurants();">
                             Click on me!
