@@ -123,29 +123,41 @@ function geoFindMe() {
 function check(path) {
     var lat = getLati();
     var long = getLongi();
-    var sum = 0.0;
-    //var path = [[40.446022, -79.942693],
-    //            [40.446014, -79.942827],
-    //            [40.446110, -79.942824],
-    //            [40.446096, -79.942695]];
 
-    var area = Math.abs(path[0][0] * path[1][1] + path[1][0] * path[2][1] + path[2][0] * path[3][1] + path[3][0] * path[0][1] -
-                path[1][0] * path[0][1] - path[2][0] * path[1][1] - path[3][0] * path[2][1] - path[0][0] * path[3][1]) / 2
-    for (var i = 0; i < 3; i++) {
-        sum = sum + Math.abs((lat - path[i + 1][0]) * (path[i][1] - long) - (lat - path[i][0]) * (path[i + 1][1] - long)) / 2;
-    }
-    sum = sum + Math.abs((lat - path[0][0]) * (path[3][1] - long) - (lat - [3][0]) * (path[0][1] - long));
 
-    if (sum <= area) {
-        //document.getElementById("joseph_room_pop").innerHTML = 1;
-        //alert("true");
-        return true;
+    //var path = [[40.445023, -79.944886],
+    //            [40.444370, -79.939286],
+    //            [40.447856, -79.939565],
+    //            [40.447546, -79.944897]];
+    var maxValid = false;
+    var minValid = false;
+
+    for (var i = 0; i < 4; i++) {
+        if (path[i][0] <= lat) {
+            minvalid = true;
+        }
+        if (path[i][0] > lat) {
+            maxValid = true;
+        }
     }
-    else if (sum > area) {
-        //document.getElementById("joseph_room_pop").innerHTML = 0;
-        //alert("false");
+    if (maxValid == false || minValid == false) {
         return false;
     }
+    maxValid = false;
+    minValid = false;
+
+    for (var i = 0; i < 4; i++) {
+        if (path[i][1] <= long) {
+            minvalid = true;
+        }
+        if (path[i][1] > long) {
+            maxValid = true;
+        }
+    }
+    if (maxValid == false || minValid == false) {
+        return false;
+    }
+    return true;
 }
 
 function restaurants() {
