@@ -155,6 +155,15 @@ function check(path) {
     if (maxValid == false || minValid == false) {
         return false;
     }
+    var flag=false;
+    for (var i = 0; i < 4; i++) {
+    	flag = path[i][0]<=path[(i+2)%4][0];
+    	var m=(path[i][0]-path[(i+1)%4][0])/(path[i][1]-path[(i+1)%4][1]); // Calculating slope
+    	var b=path[i][0]-path[i][1]*m; //calculating shift
+    	if ((path[i][0]<= lat && path[i+1)%4][0])||(path[i][0]<= lat && path[i+1)%4][0])){ //Checking if the lat is between the two points.
+    		if (lat*m+b>=long===flag) { return false; }
+    	}
+    }
     return true;
 }
 
