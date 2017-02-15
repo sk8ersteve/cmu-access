@@ -160,8 +160,9 @@ function check(path) {
     	flag = path[i][0]<=path[(i+2)%4][0];
     	var m=(path[i][0]-path[(i+1)%4][0])/(path[i][1]-path[(i+1)%4][1]); // Calculating slope
     	var b=path[i][0]-path[i][1]*m; //calculating shift
-    	if ((path[i][0]<= lat && path[i+1)%4][0])||(path[i][0]<= lat && path[i+1)%4][0])){ //Checking if the lat is between the two points.
-    		if (lat*m+b>=long===flag) { return false; }
+    	if ((path[i][0]<= lat && path[(i+1)%4][0]>=lat)
+    	||  (path[i][0]>= lat && path[(i+1)%4][0]<=lat)){ //Checking if the lat is between the two points.
+    		if (lat*m+b>=longi===flag) { return false; }
     	}
     }
     return true;
